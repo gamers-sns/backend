@@ -27,3 +27,21 @@ services:
     # srcディレクトリ内のファイルをコンテナ内の~/var/www/html配下にマウント
     volumes:
       - "./src:/var/www/html"
+
+  # DBサーバー
+  db:
+    # コンテナ名
+    container_name: "db"
+    # コンテナの作成に使用するDockerfileのパス
+    build:
+      dockerfile: "./container/db/Dockerfile"
+    # ホスト側のポート:コンテナ側のポートを指定
+    ports:
+      - "3306:3306"
+    # 環境変数の指定
+    environment:
+      - "MYSQL_ROOT_PASSWORD=password"
+      - "MYSQL_DATABASE=gamers_sns"
+    # srcディレクトリ内のファイルをコンテナ内の~/var/www/html配下にマウント
+    volumes:
+      - "./container/db/data:/var/lib/mysql"
