@@ -13,9 +13,9 @@ services:
     # ホスト側のポート:コンテナ側のポートを指定
     ports:
       - "8080:80"
-    # src配下のファイルをコンテナ内の~/va/www/html配下に配置
+    # src/laravel配下のファイルをコンテナ内の~/va/www/html配下に配置
     volumes:
-      - "./src:/var/www/html"
+      - "./src/laravel:/var/www/html"
 
   # PHPサーバー
   php:
@@ -24,9 +24,9 @@ services:
     # コンテナの作成に使用するDockerfileのパス
     build:
       dockerfile: "./container/php/Dockerfile"
-    # srcディレクトリ内のファイルをコンテナ内の~/var/www/html配下にマウント
+    # src/laravelディレクトリ内のファイルをコンテナ内の~/var/www/html配下にマウント
     volumes:
-      - "./src:/var/www/html"
+      - "./src/laravel:/var/www/html"
 
   # DBサーバー
   db:
